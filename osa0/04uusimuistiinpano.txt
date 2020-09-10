@@ -1,5 +1,3 @@
-[WebSequenceDiagrams](https://www.websequencediagrams.com/)
-
 selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
 note over palvelin:
 palvelin saa lomakkeeseen syötetyn datan,
