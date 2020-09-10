@@ -1,0 +1,10 @@
+note over selain:
+selain suorittaa js-koodia: luo muistiinpanon,
+lisää sen muistiinpanojen listalle ja piirtää
+muistiinpanolistan uudelleen näytölle
+end note
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note over palvelin:
+palvelin saa uuden JSON-muotoisen muistiinpanon
+end note
+palvelin-->selain: 201 created
