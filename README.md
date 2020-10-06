@@ -3,7 +3,9 @@
 
 Sisältö:
 * osa0
+
 * osa1
- * kurssitiedot
+kurssitiedot
+
 * osa2
- * kurssitiedot
+kurssitiedot
