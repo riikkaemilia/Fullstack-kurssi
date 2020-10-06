@@ -2,10 +2,8 @@
 ## Palautusrepositorio
 
 Sisältö:
-* osa0
-
-* osa1
-kurssitiedot
-
-* osa2
-kurssitiedot
+- osa0
+- osa1
+	- kurssitiedot
+- osa2
+	- kurssitiedot
