@@ -1,23 +1,45 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+const StatisticLine = (props) => {
+  return (
+    <tr>
+    <td>{props.text}</td>
+    <td>{props.value} {props.erikoismerkki}</td>
+    </tr>
+  )
+}
+
 const Statistics = (props) => {
+  if (props.good === 0 && props.bad === 0 && props.neutral === 0) {
+    return (
+      <p>No feedback given.</p>
+    )
+  }
   return (
   <div>
   <h2>Statistics</h2>
-  <ul>
-  <li>Good: {props.good}</li>
-  <li>Neutral: {props.neutral}</li>
-  <li>Bad: {props.bad}</li>
-  <li>All: {props.all}</li>
-  <li>Average: {props.average}</li>
-  <li>Positive: {props.positive * 100} %</li>
-  </ul>
+  <table>
+    <tbody>
+    <StatisticLine text='Good' value={props.good}/>
+    <StatisticLine text='Neutral' value={props.neutral}/>
+    <StatisticLine text='Bad' value={props.bad}/>
+    <StatisticLine text='All' value={props.all}/>
+    <StatisticLine text='Average' value={props.average}/>
+    <StatisticLine text='Positive' value={props.positive * 100} 
+    erikoismerkki='%'/>
+    </tbody>
+  </table>
   </div>)
 }
 
+const Button = (props) => {
+  return (
+<button onClick={props.handler}>{props.buttonText}</button>
+  )
+}
+
 const App = () => {
-  // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
@@ -49,9 +71,9 @@ const App = () => {
   return (
     <div>
       <h2>Give feedback</h2>
-      <button onClick={goodReview}>good</button>
-      <button onClick={neutralReview}>neutral</button>
-      <button onClick={badReview}>bad</button>
+      <Button handler={goodReview} buttonText='good'/>
+      <Button handler={neutralReview} buttonText='neutral'/>
+      <Button handler={badReview} buttonText='bad'/>
       <Statistics 
       good={good}
       neutral={neutral}

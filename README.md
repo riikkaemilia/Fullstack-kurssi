@@ -5,5 +5,6 @@ Sisältö:
 - osa0
 - osa1
 	- kurssitiedot
+	- unicafe
 - osa2
 	- kurssitiedot
