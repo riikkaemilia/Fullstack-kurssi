@@ -41,16 +41,12 @@ const Total = ({course}) => {
   const Course = ({courses}) => {
 //    console.log('Course props are', courses)
     return (
-      <>
-      {courses.map(course =>
-        <div key={course.id}>
-        <Header course={course}/>
-        <Content course={course.parts}/>
-        <Total course={course.parts}/>
+        <div>
+        <Header course={courses}/>
+        <Content course={courses.parts}/>
+        <Total course={courses.parts}/>
         </div>
-      )}
-      </>
-    )
+      )
   }
 
 export default Course
