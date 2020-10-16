@@ -69,7 +69,7 @@ const App = () => {
 }
 ]
 
-console.log('app contains array', courses)
+// console.log('app contains array', courses)
 
   return (
     <div>
