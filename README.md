@@ -9,3 +9,4 @@ Sisältö:
 	- anekdootit
 - osa2
 	- kurssitiedot
+	- puhelinluettelo
