@@ -1,19 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Person from './components/Person'
 
 const App = () => {
-    const [persons, setPersons] = useState([
-        { name: 'Arto Hellas', number: '567-9456532' },
-        { name: 'Bentti Papparainen', number: '432-54-679432' },
-        { name: 'Jarmo Joukkinen', number: '5435-23565' },
-        { name: 'Sintti Saapas', number: '0000-55555' },
-        { name: 'Kaali Maa', number: '433566-2234565' }
-    ])
+    const [persons, setPersons] = useState([])
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
     const [newFilter, setFilter] = useState('')
+
+    useEffect(() => {
+        console.log('effect')
+        axios
+            .get('http://localhost:3001/persons')
+            .then(response => {
+                console.log('promise fulfilled')
+                setPersons(response.data)
+            })
+    }, [])
+
+    console.log('persons', persons.length, 'length')
 
     const addInfo = (event) => {
         event.preventDefault()
@@ -48,7 +55,7 @@ const App = () => {
     }
 
     const numbersToShow = persons.filter(person => person.name.toLowerCase().includes(newFilter.toLowerCase())
-        || person.number.includes(newFilter))
+    || person.number.includes(newFilter))
 
     return (
         <div>
@@ -62,9 +69,11 @@ const App = () => {
                 handleNameChange={handleNameChange}
                 handleNumberChange={handleNumberChange} />
             <h2>Numbers</h2>
-            {numbersToShow.map(person =>
-                <Person key={person.name} persons={person} />
-            )}
+            <ul>
+                {numbersToShow.map(person =>
+                    <Person key={person.name} persons={person} />
+                )}
+            </ul>
         </div>
     )
 
