@@ -10,3 +10,4 @@ Sisältö:
 - osa2
 	- kurssitiedot
 	- puhelinluettelo
+	- maiden tiedot
