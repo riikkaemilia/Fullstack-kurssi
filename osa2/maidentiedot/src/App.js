@@ -35,7 +35,7 @@ const CountryView = ({ countryToShow }) => {
             })
     }, [api_key, countryToShow.capital])
 
-  //  console.log(weather)
+    //  console.log(weather)
 
     return (
         <div>
@@ -100,7 +100,7 @@ const App = () => {
     }
 
     const countriesToShow = countries.filter(country => country.name.toLowerCase().includes(newSearch.toLowerCase()))
-   //  console.log('countries to show is', countriesToShow)
+    //  console.log('countries to show is', countriesToShow)
 
     return (
         <div>
