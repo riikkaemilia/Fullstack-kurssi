@@ -2,7 +2,7 @@ import React from 'react'
 
 const Person = ({ persons, deletePerson }) => {
     return (
-        <li>{persons.name} {persons.number} <button onClick={deletePerson} type="button">delete</button></li>
+        <li>{persons.name} {persons.number} <button onClick={deletePerson} type="button">Delete</button></li>
     )
 }
 

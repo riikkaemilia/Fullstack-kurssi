@@ -3,8 +3,10 @@ import React from 'react'
 const Filter = ({ handleFilter }) => {
     return (
         <div>
-            filter numbers: <input
-                onChange={handleFilter} />
+            <label>
+                Filter numbers: <input
+                    onChange={handleFilter} />
+            </label>
         </div>
     )
 }

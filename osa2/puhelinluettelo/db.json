@@ -1,39 +1,24 @@
 {
   "persons": [
     {
-      "name": "Jouko Jahtaaja",
-      "number": "65",
-      "id": 9
+      "name": "Hau Koira",
+      "number": "55-666",
+      "id": 1
     },
     {
-      "name": "Riikka Sutinen",
-      "number": "5555-666",
-      "id": 10
+      "name": "Aku Ankka",
+      "number": "313-313",
+      "id": 3
     },
     {
-      "name": "Reipas Risto",
-      "number": "1144-244535",
-      "id": 11
+      "name": "Iines Ankka",
+      "number": "234-55111",
+      "id": 4
     },
     {
-      "name": "Puna Juuri",
-      "number": "8982-1123",
-      "id": 16
-    },
-    {
-      "name": "Töyhtö Hyyppä",
-      "number": "123-6542",
-      "id": 17
-    },
-    {
-      "name": "Palster Akka",
-      "number": "55-66-33333",
-      "id": 18
-    },
-    {
-      "name": "Aasi akas",
-      "number": "",
-      "id": 19
+      "name": "Things Stuff",
+      "number": "111-222-333",
+      "id": 5
     }
   ]
 }

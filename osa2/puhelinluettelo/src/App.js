@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import './index.css'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Person from './components/Person'
+import Notification from './components/Notification'
 import personService from './services/persons'
 
 const App = () => {
@@ -9,6 +11,8 @@ const App = () => {
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
     const [newFilter, setFilter] = useState('')
+    const [successMessage, setSuccessMessage] = useState(null)
+    const [errorMessage, setErrorMessage] = useState(null)
 
     useEffect(() => {
         console.log('effect')
@@ -32,7 +36,10 @@ const App = () => {
         const nameExists = persons.some(person => person.name === newName)
 
         if (infoObject.name === '') {
-            window.alert(`You must insert a name.`)
+            setErrorMessage(`You must insert a name.`)
+            setTimeout(() => {
+                setErrorMessage(null)
+            }, 5000)
         } else if (nameExists) {
             changeInfo(newName, newNumber)
         } else {
@@ -43,6 +50,10 @@ const App = () => {
                     setPersons(persons.concat(returnedPerson))
                     setNewName('')
                     setNewNumber('')
+                    setSuccessMessage(`Added ${newName}`)
+                    setTimeout(() => {
+                        setSuccessMessage(null)
+                    }, 5000)
                 })
         }
     }
@@ -55,11 +66,23 @@ const App = () => {
             personService
                 .update(person.id, changedPerson)
                 .then(returnedPerson => {
-                    console.log('returned person is', returnedPerson)
+                    // console.log('returned person is', returnedPerson)
                     setPersons(persons.map(p => p.id !== person.id ? p : returnedPerson))
                     setNewName('')
                     setNewNumber('')
+                    setSuccessMessage(`Changed number of ${name} to ${number}`)
+                    setTimeout(() => {
+                        setSuccessMessage(null)
+                    }, 5000)
                 })
+                .catch(error => {
+                    setErrorMessage(`Information of ${name} has already been removed from the server.`)
+                    setPersons(persons.filter(p => p.id !== person.id))
+                    setTimeout(() => {
+                        setErrorMessage(null)
+                    }, 5000)
+                }
+                )
         }
     }
 
@@ -69,8 +92,20 @@ const App = () => {
                 .remove(id)
                 .then(() => {
                     setPersons(persons.filter(n => n.id !== id))
-                    console.log('deleted person with id', id)
+                    // console.log('deleted person with id', id)
+                    setSuccessMessage(`Deleted ${name} from phonebook.`)
+                    setTimeout(() => {
+                        setSuccessMessage(null)
+                    }, 5000)
                 })
+                .catch(error => {
+                    setErrorMessage(`Information of ${name} has already been removed from the server.`)
+                    setPersons(persons.filter(n => n.id !== id))
+                    setTimeout(() => {
+                        setErrorMessage(null)
+                    }, 5000)
+                }
+                )
         }
     }
 
@@ -91,15 +126,21 @@ const App = () => {
 
     return (
         <div>
-            <h2>Phonebook</h2>
+            <h1>Phonebook</h1>
             <Filter handleFilter={handleFilter} />
-            <h2>Add a new:</h2>
+            <h2>Add a new number:</h2>
             <PersonForm
                 addInfo={addInfo}
                 newName={newName}
                 newNumber={newNumber}
                 handleNameChange={handleNameChange}
                 handleNumberChange={handleNumberChange} />
+
+            <Notification
+                successMessage={successMessage}
+                errorMessage={errorMessage}
+            />
+
             <h2>Numbers</h2>
             <ul>
                 {numbersToShow.map(person =>
