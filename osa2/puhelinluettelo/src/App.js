@@ -87,7 +87,7 @@ const App = () => {
     }
 
     const deletePersonOf = (name, id) => {
-        if (window.confirm(`Do you want to delete ${name} from phonebook?`)) {
+        if (window.confirm(`Do you want to remove ${name} from phonebook?`)) {
             personService
                 .remove(id)
                 .then(() => {
