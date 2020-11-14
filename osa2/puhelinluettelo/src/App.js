@@ -60,7 +60,6 @@ const App = () => {
                     setTimeout(() => {
                         setErrorMessage(null)
                     }, 5000)
-                    console.log(error.response.data)
                 })
         }
     }
@@ -83,13 +82,20 @@ const App = () => {
                     }, 5000)
                 })
                 .catch(error => {
-                    setErrorMessage(`Information of ${name} has already been removed from the server.`)
-                    setPersons(persons.filter(p => p.id !== person.id))
-                    setTimeout(() => {
-                        setErrorMessage(null)
-                    }, 5000)
-                }
-                )
+                    if (error.response.status === 404) {
+                        setErrorMessage(`Information of ${name} has already been removed from the server.`)
+                        setPersons(persons.filter(p => p.id !== person.id))
+                        setTimeout(() => {
+                            setErrorMessage(null)
+                        }, 5000)
+                    } else {
+                        setErrorMessage(error.response.data.error)
+                        setTimeout(() => {
+                            setErrorMessage(null)
+                        }, 5000)
+
+                    }
+                })
         }
     }
 
