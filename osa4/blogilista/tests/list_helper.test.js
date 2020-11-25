@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const listHelper = require("../utils/list_helper");
 
 const emptyList = [];
@@ -23,6 +24,11 @@ const blogWithMostLikes = {
 const mostBlogs = {
   author: "Robert C. Martin",
   blogs: 3,
+};
+
+const authorWithMostLikes = {
+  author: "Edsger W. Dijkstra",
+  likes: 24,
 };
 
 const blogs = [
@@ -111,7 +117,13 @@ describe("favorite blog", () => {
 describe("most blogs", () => {
   test("return author with most blogs", () => {
     const result = listHelper.mostBlogs(blogs);
-    console.log(result);
     expect(result).toEqual(mostBlogs);
+  });
+});
+
+describe("most likes", () => {
+  test("return author with most likes", () => {
+    const result = listHelper.mostLikes(blogs);
+    expect(result).toEqual(authorWithMostLikes);
   });
 });
