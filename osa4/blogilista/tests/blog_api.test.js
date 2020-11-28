@@ -49,6 +49,43 @@ test("a blog is added to blogs list", async () => {
   expect(titles).toContainEqual("New Cool Title");
 });
 
-afterAll(() => {
-  mongoose.connection.close();
+// Varmistaa, että likes-arvoksi annetaan 0 jos sille ei ole annettu arvoa
+test("a blog without amount of likes receives likes value of 0", async () => {
+  const newBlog = {
+    title: "Cool Blog Without Likes",
+    author: "Very Cool Author",
+    url: "http://cool_url.com",
+  };
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(200)
+    .expect("Content-Type", /application\/json/);
+
+  const response = await api.get("/api/blogs");
+
+  const newBlogResponse = await response.body.find(
+    ({ title }) => title === "Cool Blog Without Likes"
+  );
+
+  expect(newBlogResponse.likes).toBe(0);
+});
+
+// jos uusi blogi ei sisällä kenttiä title ja url, vastataan statuskoodilla 400 Bad request
+test("blog without title and url will receive code 400 bad request", async () => {
+  const newBlog = {
+    title: "jou jou jou",
+    author: "Very Cool Author",
+  };
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(400)
+    .expect("Content-Type", /application\/json/);
+});
+
+afterAll(async () => {
+  await mongoose.connection.close();
 });
