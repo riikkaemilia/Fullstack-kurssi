@@ -1,10 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpaWtrYSIsImlkIjoiNWZkMzc4ZTYzYTZkZjQzNzkzOTZkMzY5IiwiaWF0IjoxNjA4Mjk5MTI5fQ.uMJEeNlZ-00dA3x35o7RGgdPv7klgjLmI3BQZTNNT6s
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpaWtrYSIsImlkIjoiNWZmZDhlYzFjZWVhNDYyOTc5NmU0ZGYxIiwiaWF0IjoxNjEwNDU2MTE1fQ.SaRjTkgNLOZbptyWuBbE1q5pcMjXaKFlk7b8Mr1cDXQ
 
 {
-  "title": "hieno jou jou jou otsikko",
-  "author": "hyvä kirjoittaja",
+  "title": "Hieno Blogi",
+  "author": "Mahtava kirjoittaja",
   "url": "http://url.com",
   "likes": "7"
 }

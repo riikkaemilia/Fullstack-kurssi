@@ -48,12 +48,25 @@ blogsRouter.post("/", async (request, response) => {
 
 // Blogin poistaminen
 blogsRouter.delete("/:id", async (request, response) => {
-  const blog = await Blog.findByIdAndRemove(request.params.id);
-  if (blog) {
-    response.status(204).end();
-  } else {
+  const decodedToken = jwt.verify(request.token, process.env.SECRET);
+  const blog = await Blog.findById(request.params.id);
+
+  if (!blog) {
     response.status(404).end();
   }
+
+  if (!request.token || !decodedToken.id) {
+    return response.status(401).json({ error: "token missing or invalid" });
+  }
+
+  if (decodedToken.id.toString() !== blog.user.toString()) {
+    return response.status(401).json({
+      error: "wrong user - must be logged in as the user who added the blog",
+    });
+  }
+
+  await Blog.findByIdAndRemove(request.params.id);
+  response.status(204).end();
 });
 
 // Blogin muokkaaminen
