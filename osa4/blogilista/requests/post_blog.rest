@@ -1,6 +1,6 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpaWtrYSIsImlkIjoiNWZmZDhlYzFjZWVhNDYyOTc5NmU0ZGYxIiwiaWF0IjoxNjEwNDU2MTE1fQ.SaRjTkgNLOZbptyWuBbE1q5pcMjXaKFlk7b8Mr1cDXQ
+Authorization: bearer
 
 {
   "title": "Hieno Blogi",
